@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test Project</title>
+      
+        {% block stylesheets %}
+        {#<link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />#}
+        <link href="{{ asset('/bootstrap-3.3.7/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('/tablesorter/css/theme.metro-dark.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
+            <script src="{{ asset('/bootstrap-3.3.7/bootstrap.min.js') }}"></script>
+            <script src="{{ asset('/tablesorter/js/jquery.tablesorter.js') }}"></script>
+            <script src="{{ asset('/tablesorter/js/jquery.tablesorter.widgets.js') }}"></script>
+            <script src="{{ asset('/js/sorttable.js') }}"></script>
+        {% endblock %}
+        
+
+    </head>
+    <body>
+        The view is actual on {{"now"|date("Y-m-d H:i")}}
+        <br/>
+        App author: {{author.name}} {{author.surname}}
+        <br/><br/>
+        All orders view
+        
+        <table id="mytable" class="tablesorter">
+            <thead>
+            <tr>
+                <td>Customer</td>
+                <td>Customer ID</td>
+                <td>Orders</td>
+                
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for user in customers %}
+            <tr>
+                <td>        
+                    {{user.lastname}}, {{user.name}}          
+                </td>
+                   
+                <td>
+                    {{user.id}}
+                </td>
+                
+                <td>
+                    {# sub-table showing the customer's orders #}
+                    <table>
+                        <tr>
+                            <th>Product name</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Count</th>
+                            <th>Cost</th>
+                        </tr>
+
+                        {#%for row in rows%#}
+                        <tr>
+                            <td>{{user.id}}</td>
+                            <td>{{user.id}}</td>
+                            <td>{{user.id}}</td>
+                            <td>{{user.id}}</td>
+                            <td>{{user.id}}</td>
+                        </tr>
+                        {#% endfor %#}
+
+                        <tr>
+                            <td colspan="4">Total sum: {{user.id}}</td>
+                        </tr>
+                    </table>
+                    
+                </td>
+                
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        
+        
+        
+    </body>
+</html>
