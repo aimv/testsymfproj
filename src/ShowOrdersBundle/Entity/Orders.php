@@ -167,37 +167,10 @@ class Orders
     {
         return $this->price;
     }
-    /**
-     * @var \ShowOrdersBundle\Entity\Customers
-     */
-    private $customer;
-
 
     /**
-     * Set customer
-     *
-     * @param \ShowOrdersBundle\Entity\Customers $customer
-     *
-     * @return Orders
-     */
-    public function setCustomer(\ShowOrdersBundle\Entity\Customers $customer = null)
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
-
-    /**
-     * Get customer
-     *
-     * @return \ShowOrdersBundle\Entity\Customers
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-    /**
-     * @var \ShowOrdersBundle\Entity\Customers
+     * @ORM\ManyToOne(targetEntity="Customers", inversedBy="orders")
+     * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customers;
 
@@ -225,4 +198,10 @@ class Orders
     {
         return $this->customers;
     }
+	
+	/**
+     * @ORM\ManyToOne(targetEntity="Products", inversedBy="orders")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     */
+    private $products;
 }

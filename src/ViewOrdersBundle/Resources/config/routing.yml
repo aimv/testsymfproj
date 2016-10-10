@@ -1,0 +1,3 @@
+view_orders_homepage:
+    path:     /view/
+    defaults: { _controller: ViewOrdersBundle:Default:index }

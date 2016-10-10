@@ -1,0 +1,11 @@
+<?php
+
+namespace ViewOrdersBundle\Entity;
+
+/**
+ * Products
+ */
+class Products
+{
+	
+}

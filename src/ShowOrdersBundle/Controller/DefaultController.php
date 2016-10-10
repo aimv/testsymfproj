@@ -25,11 +25,12 @@ class DefaultController extends Controller {
 		);
 		$res = $query->getResult();
 */
+		
 		$query = $this->getDoctrine()->getManager()
 			->createQuery(
-				'SELECT o, c FROM ShowOrdersBundle:Orders o
-				JOIN o.customer_id c
-				WHERE o.id = :id'
+				'SELECT o FROM ShowOrdersBundle:Orders o '
+				.'LEFT JOIN o.customers c '
+				.'WHERE o.id = :id'
 			)->setParameter('id', 12);
 
 		try {
@@ -39,7 +40,15 @@ class DefaultController extends Controller {
 		}
 	
 		echo "<pre>";
-		print_r($res);
+		var_dump($res);
+		/*
+		echo $res->getId() . "<br>";
+		echo $res->getCustomerId() . "<br>";
+		echo $res->getProductId() . "<br>";
+		echo $res->getPrice() . "<br>";
+		var_dump($res->getDateCreate());
+		echo $res->getCount() . "<br>";
+		*/
 		echo "</pre>";
 		
 		//$queryBuilder = $this->getDoctrine()

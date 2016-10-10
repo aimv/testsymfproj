@@ -1,0 +1,62 @@
+ViewOrdersBundle\Entity\Orders:
+    type: entity
+    table: orders
+    indexes:
+        fk_customers:
+            columns:
+                - customer_id
+        fk_products:
+            columns:
+                - product_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        count:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                comment: 'количество товара'
+        dateCreate:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'дата заказа'
+                default: CURRENT_TIMESTAMP
+            column: date_create
+        price:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 0
+            options:
+                comment: 'цена на момент заказа'
+    manyToOne:
+        customer:
+            targetEntity: Customers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                customer_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        product:
+            targetEntity: Products
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                product_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

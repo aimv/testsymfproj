@@ -1,3 +1,7 @@
+view_orders:
+    resource: "@ViewOrdersBundle/Resources/config/routing.yml"
+    prefix:   /
+
 show_orders:
     resource: "@ShowOrdersBundle/Resources/config/routing.yml"
     prefix:   /
