@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Customers - Test Project</title>
+      
+        {% block stylesheets %}
+        <link href="{{ asset('/bootstrap-3.3.7/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
+            <script src="{{ asset('/bootstrap-3.3.7/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+        
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="{{ asset('/pic/simb.png') }}" alt="logo">
+                </div>
+                                
+                <div class="panel-body">
+                
+                    <h1>Customers list</h1>
+                    <small>The view is actual on {{"now"|date("Y-m-d H:i")}}</small>.
+                    
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr class="info">
+                                <td>
+                                    <a href="?sort=id&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Id</strong>
+                                    <a href="?sort=id&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a> 
+                                </td>
+                                <td>
+                                    <a href="?sort=name&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Name</strong>
+                                    <a href="?sort=name&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                </td>
+                                <td>
+                                    <a href="?sort=lastname&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Lastname</strong>
+                                    <a href="?sort=lastname&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                </td>
+                                <td>    
+                                    <a href="?sort=email&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Email</strong>
+                                    <a href="?sort=email&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                </td>
+                                <td>
+                                    <a href="?sort=date_create&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Created</strong>
+                                    <a href="?sort=date_create&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                </td>
+                                <td>
+                                    <strong>Actions</strong>
+                                </td>
+                            </tr>    
+                        </thead>
+                        <tbody>
+                            {% for customer in customers %}
+                            <tr>
+                                <td><a href="{{ path('customers_show', { 'id': customer.id }) }}">{{ customer.id }}</a></td>
+                                <td>{{ customer.name }}</td>
+                                <td>{{ customer.lastname }}</td>
+                                <td>{{ customer.email }}</td>
+                                <td>{% if customer.dateCreate %}{{ customer.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('customers_show', { 'id': customer.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('customers_edit', { 'id': customer.id }) }}">edit</a>
+                                        </li>
+                                    </ul>
+                                </td>  
+                            </tr>    
+                            {% endfor %}
+                        </tbody>
+                    </table>    
+                </div>
+            </div> 
+        </div>            
+
+{% if max_pages > 1 %}
+    <ul class="pagination pagination-sm">
+        {# `«` arrow  #}
+        <li {{ this_page == 1 ? 'class="disabled"' }}>
+            <a href="{{ path('customers_index', {page: this_page-1 < 1 ? 1 : this_page-1, sort: sort, dir: dir}) }}">«</a>
+        </li>
+
+        {# Render each page number #}
+        {% for i in 1..max_pages %}
+            <li {{ this_page == i ? 'class="active"' }}>
+                <a href="{{ path('customers_index', {page: i, sort: sort, dir: dir}) }}">{{ i }}</a>
+            </li>
+        {% endfor %}
+
+        {# `»` arrow #}
+        <li {{ this_page == max_pages ? 'class="disabled"' }}>
+            <a href="{{ path('customers_index', {page: this_page+1 <= max_pages ? this_page+1 : this_page, sort: sort, dir: dir}) }}">»</a>
+        </li>
+    </ul>
+{% endif %}
+                        
+    <ul>
+        <li>
+            <a href="{{ path('customers_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+
+    </body>
+
+</html>
+

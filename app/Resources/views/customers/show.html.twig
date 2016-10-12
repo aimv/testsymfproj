@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test Project</title>
+      
+        {% block stylesheets %}
+        <link href="{{ asset('/bootstrap-3.3.7/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('/js/jquery-3.1.1.min.js') }}"></script>
+            <script src="{{ asset('/bootstrap-3.3.7/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="{{ asset('/pic/simb.png') }}" alt="logo">
+                </div>
+                                
+                <div class="panel-body">
+                    <h1>Customer</h1>
+
+                    <table class="table table-striped table-bordered">
+                        <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ customer.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <td>{{ customer.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Lastname</th>
+                                <td>{{ customer.lastname }}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{ customer.email }}</td>
+                            </tr>
+                            <tr>
+                                <th>Created</th>
+                                <td>{% if customer.dateCreate %}{{ customer.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <ul>
+                        <li>
+                            <a href="{{ path('customers_index') }}">Back to the list</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('customers_edit', { 'id': customer.id }) }}">Edit</a>
+                        </li>
+                        <li>
+                            {{ form_start(delete_form) }}
+                                <input class="btn btn-info" type="submit" value="Delete">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    </ul>
+        
+                </div>
+                
+            </div>
+        
+        </div>
+    </body>
+</html>
+
+
+
+{#
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Customers</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ customer.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ customer.name }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ customer.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ customer.email }}</td>
+            </tr>
+            <tr>
+                <th>Datecreate</th>
+                <td>{% if customer.dateCreate %}{{ customer.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('customers_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('customers_edit', { 'id': customer.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+#}

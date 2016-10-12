@@ -84,6 +84,26 @@
                         </tbody>
 
                     </table>
+                        {% if max_pages > 1 %}
+                        <ul class="pagination pagination-sm">
+                            {# `«` arrow  #}
+                            <li {{ this_page == 1 ? 'class="disabled"' }}>
+                                <a href="{{ path('view_orders_homepage', {page: this_page-1 < 1 ? 1 : this_page-1}) }}">«</a>
+                            </li>
+
+                            {# Render each page number #}
+                            {% for i in 1..max_pages %}
+                            <li {{ this_page == i ? 'class="active"' }}>
+                            <a href="{{ path('view_orders_homepage', {page: i}) }}">{{ i }}</a>
+                            </li>
+                            {% endfor %}
+
+                            {# `»` arrow #}
+                            <li {{ this_page == max_pages ? 'class="disabled"' }}>
+                                <a href="{{ path('view_orders_homepage', {page: this_page+1 <= max_pages ? this_page+1 : this_page}) }}">»</a>
+                            </li>
+                        </ul>
+                        {% endif %}
                 </div>
                 
             </div>

@@ -139,4 +139,51 @@ class Customers
     {
         return $this->dateCreate;
     }
+	
+	public function setDateCreateValue() {
+		$this->dateCreate = new \DateTime();
+		return $this;
+	}
+	
+	
+    /**
+     * @var \DateTime
+     */
+    private $dateUpdate = 'CURRENT_TIMESTAMP';
+
+
+    /**
+     * Set dateUpdate
+     *
+     * @param \DateTime $dateUpdate
+     *
+     * @return Customers
+     */
+    public function setDateUpdate($dateUpdate)
+    {
+        $this->dateUpdate = $dateUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpdate
+     *
+     * @return \DateTime
+     */
+    public function getDateUpdate()
+    {
+        return $this->dateUpdate;
+    }
+	
+	public function setDateUpdateValue() {
+		$this->dateUpdate = new \DateTime();
+		return $this;
+	}
+	
+	function __toString()
+	{
+		return $this->getName() . " " . $this->getLastname() . " (ID" . $this->getId() . ")";
+	}
+	
 }

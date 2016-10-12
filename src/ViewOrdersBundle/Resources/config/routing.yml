@@ -1,3 +1,15 @@
+view_orders_customers:
+    resource: "@ViewOrdersBundle/Resources/config/routing/customers.yml"
+    prefix:   /customers
+
+view_orders_products:
+    resource: "@ViewOrdersBundle/Resources/config/routing/products.yml"
+    prefix:   /products
+    
+view_orders_orders:
+    resource: "@ViewOrdersBundle/Resources/config/routing/orders.yml"
+    prefix:   /orders
+    
 view_orders_homepage:
     path:     /view/
     defaults: { _controller: ViewOrdersBundle:Default:index }

@@ -110,4 +110,9 @@ class Products
     {
         return $this->dateCreate;
     }
+	
+	function __toString()
+	{
+		return $this->getName() . " (ID" . $this->getId() . ")";
+	}
 }

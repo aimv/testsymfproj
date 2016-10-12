@@ -1,0 +1,24 @@
+customers_index:
+    path:     /
+    defaults: { _controller: "ViewOrdersBundle:Customers:index" }
+    methods:  GET
+
+customers_show:
+    path:     /{id}/show
+    defaults: { _controller: "ViewOrdersBundle:Customers:show" }
+    methods:  GET
+
+customers_new:
+    path:     /new
+    defaults: { _controller: "ViewOrdersBundle:Customers:new" }
+    methods:  [GET, POST]
+
+customers_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ViewOrdersBundle:Customers:edit" }
+    methods:  [GET, POST]
+
+customers_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ViewOrdersBundle:Customers:delete" }
+    methods:  DELETE
