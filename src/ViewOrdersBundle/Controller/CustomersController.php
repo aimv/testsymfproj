@@ -141,7 +141,7 @@ class CustomersController extends Controller {
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($customer);
 			$em->flush();
-
+			
 			return $this->redirectToRoute('customers_edit', array('id' => $customer->getId()));
 		}
 
@@ -162,8 +162,23 @@ class CustomersController extends Controller {
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			$em->remove($customer);
-			$em->flush();
+			
+			$find = $em->createQuery(''
+					. 'SELECT count(o) as cnt FROM ViewOrdersBundle:Orders o '
+					. 'WHERE o.customer = :id'
+				)->setParameter('id', $customer->getId());
+			$found = $find->getSingleResult();
+			if (isset($found['cnt']) && $found['cnt']>0) {
+				$this->addFlash(
+					'error',
+					'You can\'t remove customer entry while it has orders!'
+				);
+				return $this->redirectToRoute('customers_edit', array('id' => $customer->getId()));
+			} 
+			else {
+				$em->remove($customer);
+				$em->flush();
+			}
 		}
 
 		return $this->redirectToRoute('customers_index');

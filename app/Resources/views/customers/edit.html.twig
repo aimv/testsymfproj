@@ -20,7 +20,7 @@
                 <div class="panel-heading">
                     <img src="{{ asset('/pic/simb.png') }}" alt="logo">
                 </div>
-                                
+
                 <div class="panel-body">
                     <h1>Customers edit</h1>
 
@@ -39,14 +39,24 @@
                             {{ form_end(delete_form) }}
                         </li>
                     </ul>
+                            
+                    {% for flash_message in app.session.flashBag.get('error') %}
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
                     
                 </div>
-                
+
             </div>
-        
+
         </div>
+       
     </body>
 </html>
+
+
 
 
 {#

@@ -157,8 +157,24 @@ class ProductsController extends Controller {
 
 		if ($form->isSubmitted() && $form->isValid()) {
 			$em = $this->getDoctrine()->getManager();
-			$em->remove($product);
-			$em->flush();
+			
+			$find = $em->createQuery(''
+					. 'SELECT count(o) as cnt FROM ViewOrdersBundle:Orders o '
+					. 'WHERE o.product = :id'
+				)->setParameter('id', $product->getId());
+			$found = $find->getSingleResult();
+			if (isset($found['cnt']) && $found['cnt']>0) {
+				$this->addFlash(
+					'error',
+					'You can\'t remove product entry while it appears in any order!'
+				);
+				return $this->redirectToRoute('products_edit', array('id' => $product->getId()));
+			} 
+			else {
+				$em->remove($product);
+				$em->flush();
+			}
+			
 		}
 
 		return $this->redirectToRoute('products_index');

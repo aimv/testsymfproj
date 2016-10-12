@@ -40,6 +40,13 @@
                         </li>
                     </ul>
                     
+                    {% for flash_message in app.session.flashBag.get('error') %}
+                        <div class="alert alert-danger">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error!</strong> {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    
                 </div>
                 
             </div>
