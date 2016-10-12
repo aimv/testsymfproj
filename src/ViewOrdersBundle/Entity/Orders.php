@@ -5,167 +5,192 @@ namespace ViewOrdersBundle\Entity;
 /**
  * Orders
  */
-class Orders
-{
+class Orders {
 
-    /**
-     * @var integer
-     */
-    private $id;
+	/**
+	 * @var integer
+	 */
+	private $id;
 
-    /**
-     * @var integer
-     */
-    private $count;
+	/**
+	 * @var integer
+	 */
+	private $count;
 
-    /**
-     * @var \DateTime
-     */
-    private $dateCreate = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $dateCreate; // = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var string
-     */
-    private $price;
+	/**
+	 * @var string
+	 */
+	private $price;
 
-    /**
-     * @var \ViewOrdersBundle\Entity\Customers
-     */
-    private $customer;
+	/**
+	 * @var \ViewOrdersBundle\Entity\Customers
+	 */
+	private $customer;
 
-    /**
-     * @var \ViewOrdersBundle\Entity\Products
-     */
-    private $product;
+	/**
+	 * @var \ViewOrdersBundle\Entity\Products
+	 */
+	private $product;
 
+	/**
+	 * Get id
+	 *
+	 * @return integer
+	 */
+	public function getId() {
+		return $this->id;
+	}
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+	/**
+	 * Set count
+	 *
+	 * @param integer $count
+	 *
+	 * @return Orders
+	 */
+	public function setCount($count) {
+		$this->count = $count;
 
-    /**
-     * Set count
-     *
-     * @param integer $count
-     *
-     * @return Orders
-     */
-    public function setCount($count)
-    {
-        $this->count = $count;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get count
+	 *
+	 * @return integer
+	 */
+	public function getCount() {
+		return $this->count;
+	}
 
-    /**
-     * Get count
-     *
-     * @return integer
-     */
-    public function getCount()
-    {
-        return $this->count;
-    }
+	/**
+	 * Set dateCreate
+	 *
+	 * @param \DateTime $dateCreate
+	 *
+	 * @return Orders
+	 */
+	//public function setDateCreate($dateCreate)
+	//{
+	//   $this->dateCreate = $dateCreate;
+	//    return $this;
+	//}
 
-    /**
-     * Set dateCreate
-     *
-     * @param \DateTime $dateCreate
-     *
-     * @return Orders
-     */
-    public function setDateCreate($dateCreate)
-    {
-        $this->dateCreate = $dateCreate;
+	/**
+	 * Get dateCreate
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateCreate() {
+		return $this->dateCreate;
+	}
 
-        return $this;
-    }
+	public function setDateCreateValue() {
+		$this->dateCreate = new \DateTime();
+		return $this;
+	}
 
-    /**
-     * Get dateCreate
-     *
-     * @return \DateTime
-     */
-    public function getDateCreate()
-    {
-        return $this->dateCreate;
-    }
+	/**
+	 * Set price
+	 *
+	 * @param string $price
+	 *
+	 * @return Orders
+	 */
+	public function setPrice($price) {
+		$this->price = $price;
 
-    /**
-     * Set price
-     *
-     * @param string $price
-     *
-     * @return Orders
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get price
+	 *
+	 * @return string
+	 */
+	public function getPrice() {
+		return $this->price;
+	}
 
-    /**
-     * Get price
-     *
-     * @return string
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
+	/**
+	 * Set customer
+	 *
+	 * @param \ViewOrdersBundle\Entity\Customers $customer
+	 *
+	 * @return Orders
+	 */
+	public function setCustomer(\ViewOrdersBundle\Entity\Customers $customer = null) {
+		$this->customer = $customer;
 
-    /**
-     * Set customer
-     *
-     * @param \ViewOrdersBundle\Entity\Customers $customer
-     *
-     * @return Orders
-     */
-    public function setCustomer(\ViewOrdersBundle\Entity\Customers $customer = null)
-    {
-        $this->customer = $customer;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get customer
+	 *
+	 * @return \ViewOrdersBundle\Entity\Customers
+	 */
+	public function getCustomer() {
+		return $this->customer;
+	}
 
-    /**
-     * Get customer
-     *
-     * @return \ViewOrdersBundle\Entity\Customers
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
+	/**
+	 * Set product
+	 *
+	 * @param \ViewOrdersBundle\Entity\Products $product
+	 *
+	 * @return Orders
+	 */
+	public function setProduct(\ViewOrdersBundle\Entity\Products $product = null) {
+		$this->product = $product;
 
-    /**
-     * Set product
-     *
-     * @param \ViewOrdersBundle\Entity\Products $product
-     *
-     * @return Orders
-     */
-    public function setProduct(\ViewOrdersBundle\Entity\Products $product = null)
-    {
-        $this->product = $product;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get product
+	 *
+	 * @return \ViewOrdersBundle\Entity\Products
+	 */
+	public function getProduct() {
+		return $this->product;
+	}
 
-    /**
-     * Get product
-     *
-     * @return \ViewOrdersBundle\Entity\Products
-     */
-    public function getProduct()
-    {
-        return $this->product;
-    }
+	/**
+	 * @var \DateTime
+	 */
+	private $dateUpdate; // = 'CURRENT_TIMESTAMP';
+
+	/**
+	 * Set dateUpdate
+	 *
+	 * @param \DateTime $dateUpdate
+	 *
+	 * @return Customers
+	 */
+	//public function setDateUpdate($dateUpdate)
+	//{
+	//    $this->dateUpdate = $dateUpdate;
+	//    return $this;
+	//}
+
+	/**
+	 * Get dateUpdate
+	 *
+	 * @return \DateTime
+	 */
+	public function getDateUpdate() {
+		return $this->dateUpdate;
+	}
+
+	public function setDateUpdateValue() {
+		$this->dateUpdate = new \DateTime();
+		return $this;
+	}
+
 }

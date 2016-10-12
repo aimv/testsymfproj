@@ -42,15 +42,15 @@ ViewOrdersBundle\Entity\Customers:
             nullable: false
             options:
                 comment: 'дата добавления пользователя'
-                default: CURRENT_TIMESTAMP
+#               default: CURRENT_TIMESTAMP
             column: date_create
         dateUpdate:
             type: datetime
             nullable: false
             options:
                 comment: 'дата обновления'
-                default: CURRENT_TIMESTAMP
+#               default: CURRENT_TIMESTAMP
             column: date_update
     lifecycleCallbacks: 
-        prePersist: [setDateCreateValue]
+        prePersist: [setDateCreateValue, setDateUpdateValue]
         preUpdate: [setDateUpdateValue]

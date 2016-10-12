@@ -29,8 +29,15 @@ ViewOrdersBundle\Entity\Orders:
             nullable: false
             options:
                 comment: 'дата заказа'
-                default: CURRENT_TIMESTAMP
+#               default: CURRENT_TIMESTAMP
             column: date_create
+        dateUpdate:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'дата обновления'
+#               default: CURRENT_TIMESTAMP
+            column: date_update
         price:
             type: decimal
             nullable: false
@@ -59,4 +66,6 @@ ViewOrdersBundle\Entity\Orders:
                 product_id:
                     referencedColumnName: id
             orphanRemoval: false
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+        prePersist: [setDateCreateValue, setDateUpdateValue]
+        preUpdate: [setDateUpdateValue]

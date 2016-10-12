@@ -31,6 +31,7 @@ class DefaultController extends Controller {
 				->leftJoin('o.product', 'p', 'WITH', 'p.id = o.product')
 				->orderBy('c.lastname', strtoupper($udir))
 				->addOrderBy('c.name', strtoupper($udir))
+				->addOrderBy($sort_field, $sort_dir) //additional sorting of orders for each customer
 				;
 		
 	/*
@@ -147,7 +148,10 @@ class DefaultController extends Controller {
 					'udir' => $udir,
 					'limit' => $limit,
 					'max_pages' => $maxPages,
-					'this_page' => $thisPage
+					'this_page' => $thisPage,
+					'sort' => $sort,
+					'd' => $direction,
+					'ud' => $udir
 					)
 				);
     }

@@ -51,7 +51,10 @@ class OrdersController extends Controller {
 			$sort_field = "price";
 		}
 		else if ($sort == "created") {
-			$sort_field = "created";
+			$sort_field = "date_create";
+		}
+		else if ($sort == "updated") {
+			$sort_field = "date_update";
 		}
 		//sorting direction
 		$sort_dir = "ASC";

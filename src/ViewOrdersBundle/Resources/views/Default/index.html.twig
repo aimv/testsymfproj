@@ -26,7 +26,10 @@
                 </div>
                                 
                 <div class="panel-body">
-                
+                    <a href="{{ path('orders_index', {}) }}" target="_blank">Orders</a> | 
+                    <a href="{{ path('customers_index', {}) }}" target="_blank">Customers</a> | 
+                    <a href="{{ path('products_index', {}) }}" target="_blank">Products</a> 
+
                     <h1>Orders view</h1>
                     <small>The view is actual on {{"now"|date("Y-m-d H:i")}}</small>.
                     <small>&copy; {{author.name}} {{author.surname}}</small>
@@ -88,19 +91,19 @@
                         <ul class="pagination pagination-sm">
                             {# `«` arrow  #}
                             <li {{ this_page == 1 ? 'class="disabled"' }}>
-                                <a href="{{ path('view_orders_homepage', {page: this_page-1 < 1 ? 1 : this_page-1}) }}">«</a>
+                                <a href="{{ path('view_orders_homepage', {page: this_page-1 < 1 ? 1 : this_page-1, sort: sort, d: d, ud: ud}) }}">«</a>
                             </li>
 
                             {# Render each page number #}
                             {% for i in 1..max_pages %}
                             <li {{ this_page == i ? 'class="active"' }}>
-                            <a href="{{ path('view_orders_homepage', {page: i}) }}">{{ i }}</a>
+                            <a href="{{ path('view_orders_homepage', {page: i, sort: sort, d: d, ud: ud}) }}">{{ i }}</a>
                             </li>
                             {% endfor %}
 
                             {# `»` arrow #}
                             <li {{ this_page == max_pages ? 'class="disabled"' }}>
-                                <a href="{{ path('view_orders_homepage', {page: this_page+1 <= max_pages ? this_page+1 : this_page}) }}">»</a>
+                                <a href="{{ path('view_orders_homepage', {page: this_page+1 <= max_pages ? this_page+1 : this_page, sort: sort, d: d, ud: ud}) }}">»</a>
                             </li>
                         </ul>
                         {% endif %}

@@ -16,10 +16,11 @@ class OrdersType extends AbstractType
     {
         $builder
             ->add('count')
-            //->add('dateCreate')
             ->add('price')
             ->add('customer')
             ->add('product')
+			//->add('dateCreate')
+			//->add('dateUpdate')
         ;
     }
     

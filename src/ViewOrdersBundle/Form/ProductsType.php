@@ -18,6 +18,7 @@ class ProductsType extends AbstractType
             ->add('name')
             ->add('price')
             //->add('dateCreate')
+			//->add('dateUpdate')
         ;
     }
     

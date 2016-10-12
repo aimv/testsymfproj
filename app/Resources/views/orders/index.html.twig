@@ -46,9 +46,14 @@
                                     <a href="?sort=price&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
                                 </td>
                                 <td>
-                                    <a href="?sort=date_create&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <a href="?sort=created&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
                                     <strong>Created</strong>
-                                    <a href="?sort=date_create&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                    <a href="?sort=created&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                                </td>
+                                <td>
+                                    <a href="?sort=updated&dir=asc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-top"></span></a> 
+                                    <strong>Updated</strong>
+                                    <a href="?sort=updated&dir=desc&page={{this_page}}"><span class="glyphicon glyphicon-triangle-bottom"></span></a>
                                 </td>
                                 <td>
                                     <strong>Actions</strong>
@@ -62,6 +67,7 @@
                                 <td>{{ order.count }}</td>
                                 <td>{{ order.price }}</td>
                                 <td>{% if order.dateCreate %}{{ order.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{% if order.dateUpdate %}{{ order.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
                                 <td>
                                     <ul>
                                         <li>

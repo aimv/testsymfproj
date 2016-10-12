@@ -56,7 +56,10 @@ class CustomersController extends Controller {
 			$sort_field = "email";
 		}
 		else if ($sort == "created") {
-			$sort_field = "created";
+			$sort_field = "date_create";
+		}
+		else if ($sort == "updated") {
+			$sort_field = "date_update";
 		}
 		//sorting direction
 		$sort_dir = "ASC";
@@ -96,7 +99,6 @@ class CustomersController extends Controller {
 	public function newAction(Request $request) {
 		$customer = new Customers();
 		$form = $this->createForm('ViewOrdersBundle\Form\CustomersType', $customer);
-		var_dump($form);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {

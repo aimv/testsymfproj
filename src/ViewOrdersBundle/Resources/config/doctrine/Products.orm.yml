@@ -30,6 +30,15 @@ ViewOrdersBundle\Entity\Products:
             nullable: false
             options:
                 comment: 'дата добавления товара'
-                default: CURRENT_TIMESTAMP
+#               default: CURRENT_TIMESTAMP
             column: date_create
-    lifecycleCallbacks: {  }
+        dateUpdate:
+            type: datetime
+            nullable: false
+            options:
+                comment: 'дата обновления'
+#               default: CURRENT_TIMESTAMP
+            column: date_update
+    lifecycleCallbacks: 
+        prePersist: [setDateCreateValue, setDateUpdateValue]
+        preUpdate: [setDateUpdateValue]
